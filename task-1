@@ -1,0 +1,23 @@
+class Solution {
+    public boolean halvesAreAlike(String s) {
+        int n = s.length();
+        int mid = n / 2;
+
+        // String containing all vowels
+        String vowels = "aeiouAEIOU";
+
+        int countA = 0, countB = 0;
+
+        // Count vowels in both halves
+        for (int i = 0; i < mid; i++) {
+            if (vowels.indexOf(s.charAt(i)) != -1) {
+                countA++;
+            }
+            if (vowels.indexOf(s.charAt(i + mid)) != -1) {
+                countB++;
+            }
+        }
+
+        return countA == countB;
+    }
+}
