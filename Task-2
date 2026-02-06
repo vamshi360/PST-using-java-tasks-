@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int T = sc.nextInt();   // number of test cases
+
+        while (T-- > 0) {
+            String s = sc.next();
+            if (isLapindrome(s)) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
+            }
+        }
+
+        sc.close();
+    }
+
+    static boolean isLapindrome(String s) {
+        int n = s.length();
+        int mid = n / 2;
+
+        int[] freq1 = new int[26];
+        int[] freq2 = new int[26];
+
+        // First half
+        for (int i = 0; i < mid; i++) {
+            freq1[s.charAt(i) - 'a']++;
+        }
+
+        // Second half (skip middle if odd length)
+        for (int i = (n % 2 == 0 ? mid : mid + 1); i < n; i++) {
+            freq2[s.charAt(i) - 'a']++;
+        }
+
+        // Compare frequencies
+        for (int i = 0; i < 26; i++) {
+            if (freq1[i] != freq2[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
